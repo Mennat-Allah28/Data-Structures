@@ -1,60 +1,47 @@
 #include <iostream>
-#include "Stack.h"
-
+#include <stack>
 using namespace std;
 
-int main()
-{
-    Stack s;
+void collapse(stack<int>& st) {
+    stack<int> temp;
 
-    s.pop();
-    s.push(2);
-    s.push(4);
-    s.push(6);
-    s.push(8);
-    s.push(10);
-    s.push(12);
+    while (!st.empty()) {
+        int x1 = st.top();
+        st.pop();
+        if(!st.empty()){
+                int x2 = st.top();
+                st.pop();
+                temp.push(x1+x2);
+        }else{
+        temp.push(x1);
+        }
+    }
 
-    cout<<endl;
+    while (!temp.empty()) {
+        st.push(temp.top());
+        temp.pop();
+    }
+}
 
-    cout << "Top element: " << s.peek() << endl;
-    cout<<endl;
+int main() {
+    stack<int> s1;
 
-            if (s.isFull())
-        cout << "Stack is Full" << endl;
-    else
-        cout << "Stack is NOT Full" << endl;
+    s1.push(7);
+    s1.push(2);
+    s1.push(8);
+    s1.push(9);
+    s1.push(4);
+    s1.push(13);
+    s1.push(7);
+    s1.push(1);
+    s1.push(9);
 
-            if (s.isEmpty())
-        cout << "Stack is Empty" << endl;
-    else
-        cout << "Stack is NOT Empty" << endl;
-        cout<<endl;
+    collapse(s1);
 
-    s.pop();
-    cout << "After pop, Top element: " << s.peek() << endl;
-    cout<<endl;
-
-    s.pop();
-    s.pop();
-    s.pop();
-    s.pop();
-    cout<<"After 4 pop \n \n";
-
-    if (s.isEmpty())
-        cout << "Stack is Empty" << endl;
-    else
-        cout << "Stack is NOT Empty" << endl;
-
-        if (s.isFull())
-        cout << "Stack is Full" << endl;
-    else
-        cout << "Stack is NOT Full" << endl;
-        cout<<endl;
-
-
-    s.display();
-    cout<<endl;
+    while (!s1.empty()) {
+        cout << s1.top() << " , ";
+        s1.pop();
+    }
 
     return 0;
 }
