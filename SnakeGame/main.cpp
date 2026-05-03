@@ -305,7 +305,7 @@ public:
     }
 
     void placeObstacles() {
-        if (level < 3) return;          // obstacles تبدأ من level 3
+        if (level < 3) return;          // obstacles start from level 3
         int count = (level - 2) * 3;   // level3=3, level4=6, level5=9, ...
         for (int i = 0; i < count; i++) {
             Obstacle obs;
@@ -315,10 +315,10 @@ public:
         }
     }
 
-    // تضاف obstacles جديدة عند كل level up أثناء اللعب
+    // addding new obstacles at each new level up during playing
     void addObstaclesForLevel() {
         if (level < 3) return;
-        int toAdd = 3;  // 3 obstacles جديدة مع كل level
+        int toAdd = 3;  //3 new obstacles with each new level
         for (int i = 0; i < toAdd; i++) {
             Obstacle obs;
             obs.pos = randomEmptyCell();
